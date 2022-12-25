@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Aplikasi Prediksi Penyakit Jantung</title>
+  </head>
+  <body
+    class="
+      flex flex-col
+      justify-between
+      item-center
+      p-8
+      min-h-screen
+      bg-gradient-to-r
+      from-green-400
+      to-blue-500
+      text-gray-800
+      md:flex-row
+    "
+  >
+    <main class="bg-white p-16 rounded-lg">
+      <h1 class="text-3xl font-bold mb-8">Prediksi Resiko Penyakit Jantung:</h1>
+
+      <form
+        action="{{ url_for('predict') }}"
+        method="post"
+        class="flex flex-col"
+      >
+        <label for="Usia" class="mb-2">Usia</label>
+        <input
+          type="text"
+          name="usia"
+          placeholder="Usia"
+          required="required"
+          class="p-4 bg-gray-100 rounded-md"
+        />
+
+        <label for="Jenis Kelamin" class="mt-4 mb-2">Jenis Kelamin:</label>
+        <select
+          name="jeniskelamin"
+          id="Jenis Kelamin"
+          class="p-4 bg-gray-100 rounded-md"
+          required="required"
+        >
+          <option value="Laki-Laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+
+        <label for="Tekanan Darah" class="mt-4 mb-2">Tekanan Darah:</label>
+        <input
+          type="text"
+          name="tekanandarah"
+          placeholder="Tekanan Darah"
+          required="required"
+          class="p-4 bg-gray-100 rounded-md"
+        />
+
+        <label for="Kolesterol" class="mt-4 mb-2">Kolesterol:</label>
+        <input
+          type="text"
+          name="kolesterol"
+          placeholder="Jumlah Kolesterol"
+          required="required"
+          class="p-4 bg-gray-100 rounded-md"
+        />
+
+        <label for="Gula Darah" class="mt-4 mb-2">Gula Darah:</label>
+        <input
+          type="text"
+          name="guladarah"
+          placeholder="Gula Darah"
+          required="required"
+          class="p-4 bg-gray-100 rounded-md"
+        />
+
+        <label for="Detak Jantung" class="mt-4 mb-2">Detak Jantung:</label>
+        <input
+          type="text"
+          name="detakjantung"
+          placeholder="Detak Jantung"
+          required="required"
+          class="p-4 bg-gray-100 rounded-md"
+        />
+        <button
+          type="submit"
+          class="
+            flex
+            justify-center
+            align-center
+            mt-8
+            p-4
+            bg-gradient-to-r
+            from-green-400
+            to-blue-500
+            text-white
+            rounded-md
+          "
+        >
+          PREDIKSI SEKARANG
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-right ml-4"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </main>
+    <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+      <div class="bg-white p-16 rounded-lg">
+        <h1 class="text-2xl mb-8">Prediksi Resiko Penyakit Jantung</h1>
+        <h2 class="text-5xl font-bold">{{ output }}</h2>
+        {% if (output) != 'belum diprediksi' %}
+        <div class="mt-8">
+          <p>Usia: {{ usia }} tahun</p>
+          <p>Jenis kelamin: {{ jeniskelamin }}</p>
+          <p>Tekanan Darah: {{ tekanandarah }}</p>
+          <p>Kolesterol: {{ kolesterol }}</p>
+          <p>Gula Darah: {{ guladarah }}</p>
+          <p>Detak Jantung: {{ detakjantung }}</p>
+        </div>
+        {% endif %}
+      </div>
+      <div class="flex justify-around bg-white p-16 rounded-lg mt-8">
+        <img
+          class="h-24 md:h-28"
+          src="https://digitalent.kominfo.go.id/assets/@images/logo.png"
+          alt="logo-dts"
+        />
+        <img
+          class="h-24 md:h-28"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/604px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
+          alt="logo-kominfo"
+        />
+      </div>
+    </section>
+  </body>
+</html>
